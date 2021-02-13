@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+      
+        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet"  href="style.css">
+        
+        <title>Interactive Pricising Component </title>
+    </head>
+    <body>
+        <div class="card">
+      <div class="pages-prices">
+          <span class="p-view"><span class="pages"></span>pagesview</span>
+          <input class="range" type="range" name="pageviews" id="pageviews" min="0" step="1">
+          <span class="price"><span class="amount"></span>month</span> 
+      </div>  
+      <div class="price-plan">
+          <span class="monthly">Monthly Billing</span>
+          <input class="checkbox" type="checkbox" name="toggle" id="toggle-checkbox">
+          <label class="toggle-label" for="toggle-checkbox">Toggle</label>
+          <span class="yearly">Yearly Billing<span class="percentage">-40%</span></span>
+      </div>
+      <div class="features">
+          <ul class="features-list">
+              <li><img src="images/icon-check.svg" alt="Icon check">Unlimited websites</li>
+              <li><img src="images/icon-check.svg" alt="Icon check">100% data ownership</li>
+              <li><img src="images/icon-check.svg" alt="Icon check">Email reports</li>
+          </ul>
+      </div>
+      <buttin class="btn">Start my trial</buttin>
+    </div>
+    <script>
+        const pagesCount = document.querySelector('.pages');
+const priceMonth = document.querySelector('.amount');
+const slider = document.querySelector('.range');
+const billingPlan = document.querySelector('.checkbx');
+
+const pageViews = [10, 50, 100, 500, 1];
+const monthlyPrices = [8, 12, 16, 24, 36];
+
+slider.addEventListener('input', function() {
+    slider.max = pageViews.length-1;
+    pagesCount.textContent = `${pageViews[slider.value]}K`;
+    if (!billingPlan.checked) {
+        priceMonth.textContent = `$${monthlyPrices[slider.value]}.00`;
+        return;
+    }
+    priceMonth.textContent = `$${monthlyPrices[slider.value] * 0.25}.00`;
+});
+    </script>
+    </body>
+</html>
